@@ -14,12 +14,12 @@ Sync workspace with ROSbot
 ./sync_with_rosbot.sh $YOUR_ROSBOT_IP
 ```
 
-```
-docker compose -f compose.pc.yaml
+```bash
+docker compose -f compose.pc.yaml up
 ```
 
 ## ROSbot
 
 ```bash
-docker compose -f compose.rosbot.yaml
+docker compose -f compose.rosbot.yaml up
 ```
