@@ -1,0 +1,42 @@
+services:
+
+  discovery-server:
+    image: ros:humble-ros-core
+    network_mode: host
+    ipc: host
+    command: fast-discovery-server -i 0
+
+  rplidar:
+    image: husarion/rplidar:humble
+    network_mode: host
+    ipc: host
+    devices:
+      - ${LIDAR_SERIAL:?err}:/dev/ttyUSB0
+    volumes:
+      - ./superclient-dds.xml:/dds-config.xml
+    environment:
+      - ROS_DISCOVERY_SERVER=127.0.0.1:11811
+    command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${RPLIDAR_BAUDRATE:-115200}
+
+  rosbot-xl:
+    image: husarion/rosbot-xl:humble
+    network_mode: host
+    ipc: host
+    volumes:
+      - ./superclient-dds.xml:/dds-config.xml
+    environment:
+      - ROS_DISCOVERY_SERVER=127.0.0.1:11811
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/dds-config.xml
+    command: ros2 launch rosbot_xl_bringup bringup.launch.py mecanum:=${MECANUM:-False}
+
+  microros:
+    image: microros/micro-ros-agent:humble
+    network_mode: host
+    ipc: host
+    volumes:
+      - ./micro-ros_entrypoint.sh:/micro-ros_entrypoint.sh
+      - ./superclient-dds.xml:/dds-config.xml
+    environment:
+      - ROS_DISCOVERY_SERVER=127.0.0.1:11811
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/dds-config.xml
+    command: udp4 --port 8888
