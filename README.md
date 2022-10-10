@@ -1,6 +1,6 @@
 # rosbot-xl-mapping
 
- A GitHub template for ROSbot XL: creating a map a using Slam Toolbox 
+A GitHub template for ROSbot XL: creating a map a using Slam Toolbox 
 
 ## Quick Start
 
@@ -11,7 +11,7 @@ Connect a gampad to USB port of your PC/laptop.
 Sync workspace with ROSbot
 
 ```bash
-./sync_with_rosbot.sh $YOUR_ROSBOT_IP
+./sync_with_rosbot.sh $ROSBOT_IP
 ```
 
 ```bash
