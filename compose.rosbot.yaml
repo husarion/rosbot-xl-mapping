@@ -22,7 +22,7 @@ services:
     image: husarion/rosbot-xl:humble
     network_mode: host
     ipc: host
-    # In rosbot-xl superclient configuration is necessary, because ros2 controllers spawner waits for controller_manager services
+    # In rosbot-xl service superclient configuration is necessary, because ros2 controllers spawner waits for controller_manager services
     # and they can't be listed in regular client configuration 
     volumes:
       - ./superclient-dds.xml:/dds-config.xml
