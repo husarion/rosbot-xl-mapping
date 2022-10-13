@@ -16,7 +16,7 @@ services:
       - ./superclient-dds.xml:/dds-config.xml
     environment:
       - ROS_DISCOVERY_SERVER=127.0.0.1:11811
-    command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${RPLIDAR_BAUDRATE:-115200}
+    command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
 
   rosbot-xl:
     image: husarion/rosbot-xl:humble
