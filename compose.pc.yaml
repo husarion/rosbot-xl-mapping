@@ -1,19 +1,32 @@
 services:
 
+  map-saver:
+    image: husarion/nav2-map-server:humble-22-12-07
+    network_mode: host
+    ipc: host
+    volumes:
+      - ./maps:/maps
+    environment:
+      - DDS_CONFIG
+      - RMW_IMPLEMENTATION
+    command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"
+
   rviz:
-    image: husarion/rviz2:humble
+    image: husarion/rviz2:humble-22-12-08
+    container_name: rviz
     network_mode: host
     ipc: host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - ./config/rbxl.rviz:/root/.rviz2/default.rviz
+      - ./config/rosbot.rviz:/root/.rviz2/default.rviz
     environment:
+      - DDS_CONFIG
+      - RMW_IMPLEMENTATION
       - DISPLAY=${DISPLAY:?err}
       - LIBGL_ALWAYS_SOFTWARE=1
-      - ROS_DISCOVERY_SERVER=${ROSBOT_IP:?err}:11811
 
   joy2twist:
-    image: husarion/joy2twist:humble
+    image: husarion/joy2twist:humble-22-12-07
     network_mode: host
     ipc: host
     devices:
@@ -21,22 +34,9 @@ services:
     volumes: 
       - ./config/joy2twist.yaml:/joy2twist.yaml
     environment:
-      - ROS_DISCOVERY_SERVER=${ROSBOT_IP:?err}:11811
+      - DDS_CONFIG
+      - RMW_IMPLEMENTATION
     command: > 
       ros2 launch joy2twist gamepad_controller.launch.py
         joy2twist_params_file:=/joy2twist.yaml
 
-  mapping:
-    image: husarion/slam-toolbox:humble
-    container_name: slam-toolbox
-    network_mode: host
-    ipc: host
-    volumes:
-      - ./config/slam_toolbox_params.yaml:/slam_params.yaml
-      - ./maps:/maps
-    environment:
-      - ROS_DISCOVERY_SERVER=${ROSBOT_IP:?err}:11811
-    command: >
-      ros2 launch slam_toolbox online_sync_launch.py
-        slam_params_file:=/slam_params.yaml
-        use_sim_time:=${USE_SIM_TIME:-False}
