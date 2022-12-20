@@ -12,7 +12,7 @@ services:
     command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"
 
   rviz:
-    image: husarion/rviz2:humble-22-12-08
+    image: husarion/rviz2:humble-22-12-20
     container_name: rviz
     network_mode: host
     ipc: host
