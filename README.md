@@ -2,7 +2,7 @@
 
 Create a map of the unknow environment with ROSbot XL controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/). 
 
-## Quick Start
+## Quick Start (real robot)
 
 ### PC
 
@@ -89,3 +89,30 @@ In the ROSbot's terminal execute (in `/home/husarion/rosbot-xl-mapping` director
 ```bash
 docker compose -f compose.rosbot.yaml up
 ```
+
+## Quick Start (Gazebo simulation)
+
+> **Prerequisites**
+>
+> The `compose.simulation.yaml` file uses NVIDIA Container Runtime. Make sure you have NVIDIA GPU and the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) installed.
+
+Start the containers in a new terminal:
+
+```bash
+xhost +local:docker && \
+docker compose -f compose.simulation.yaml up
+```
+
+And in the second terminal start `telop-twist-keyboard` for manual ROSbot XL control:
+
+```bash
+docker exec -it rviz bash
+```
+
+And inside the running container shell execute:
+
+```bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+
+
