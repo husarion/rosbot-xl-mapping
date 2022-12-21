@@ -10,7 +10,6 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./config/rosbot.rviz:/root/.rviz2/default.rviz
     environment:
-      - DDS_CONFIG
       - RMW_IMPLEMENTATION
       - DISPLAY=${DISPLAY:?err}
       - NVIDIA_VISIBLE_DEVICES=all
@@ -24,7 +23,6 @@ services:
     network_mode: host
     ipc: host
     environment:
-      - DDS_CONFIG
       - RMW_IMPLEMENTATION
       - DISPLAY=${DISPLAY:?err}
       - NVIDIA_VISIBLE_DEVICES=all
@@ -38,7 +36,6 @@ services:
     volumes:
       - ./config/slam_toolbox_params.yaml:/slam_params.yaml
     environment:
-      - DDS_CONFIG
       - RMW_IMPLEMENTATION
     command: >
       ros2 launch slam_toolbox online_sync_launch.py
