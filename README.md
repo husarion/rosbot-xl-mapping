@@ -100,7 +100,7 @@ Start the containers in a new terminal:
 
 ```bash
 xhost +local:docker && \
-docker compose -f compose.simulation.yaml up
+docker compose -f compose.sim.gazebo.yaml up
 ```
 
 And in the second terminal start `telop-twist-keyboard` for manual ROSbot XL control:
