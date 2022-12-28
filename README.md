@@ -1,6 +1,6 @@
 # rosbot-xl-mapping
 
-Create a map of the unknow environment with ROSbot XL controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/). 
+Create a map of the unknow environment with ROSbot XL controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/).
 
 ## Quick Start (real robot)
 
@@ -51,7 +51,7 @@ xhost +local:docker && \
 docker compose -f compose.pc.yaml up
 ```
 
-#### Without the gamepad 
+#### Without the gamepad
 
 ```bash
 xhost +local:docker && \
@@ -115,4 +115,26 @@ And inside the running container shell execute:
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 
+## Quick Start (Webots simulation)
 
+> **Prerequisites**
+>
+> The `compose.sim.webots.yaml` file uses NVIDIA Container Runtime. Make sure you have NVIDIA GPU and the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) installed.
+
+Start the containers in a new terminal:
+
+```bash
+xhost +local:docker && \
+docker compose -f compose.sim.webots.yaml up
+```
+
+And in the second terminal start `telop-twist-keyboard` for manual ROSbot XL control:
+
+```bash
+docker exec -it rviz bash
+```
+
+And inside the running container shell execute:
+
+```bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard

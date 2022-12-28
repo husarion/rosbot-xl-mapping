@@ -31,12 +31,11 @@ services:
     ipc: host
     devices:
       - /dev/input
-    volumes: 
+    volumes:
       - ./config/joy2twist.yaml:/joy2twist.yaml
     environment:
       - DDS_CONFIG
       - RMW_IMPLEMENTATION
-    command: > 
+    command: >
       ros2 launch joy2twist gamepad_controller.launch.py
         joy2twist_params_file:=/joy2twist.yaml
-
