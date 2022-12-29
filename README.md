@@ -121,6 +121,12 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 >
 > The `compose.sim.webots.yaml` file uses NVIDIA Container Runtime. Make sure you have NVIDIA GPU and the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) installed.
 
+### Run without Nvidia acceleration
+Comment or delete line inside the compose file `compose.sim.webots.yaml`.
+```bash
+# runtime: nvidia
+```
+
 Start the containers in a new terminal:
 
 ```bash
