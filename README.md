@@ -125,6 +125,9 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 Comment or delete line inside the compose file `compose.sim.webots.yaml`.
 ```bash
 # runtime: nvidia
+...
+# - NVIDIA_VISIBLE_DEVICES=all
+# - NVIDIA_DRIVER_CAPABILITIES=all
 ```
 
 Start the containers in a new terminal:
