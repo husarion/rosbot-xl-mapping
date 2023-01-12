@@ -81,7 +81,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 > ```
 > docker run --rm -it --privileged \
 > husarion/rosbot-xl:humble \
-> flash-firmware.py /firmware.bin /dev/ttyUSB0
+> flash-firmware.py -p /dev/ttyUSB0
 > ```
 
 In the ROSbot's terminal execute (in `/home/husarion/rosbot-xl-mapping` directory):
