@@ -17,7 +17,7 @@ git clone https://github.com/husarion/rosbot-xl-mapping.git
 Check your configs in `.env` file:
 
 ```
-LIDAR_SERIAL=/dev/ttyUSB0
+LIDAR_SERIAL=/dev/ttyRPLIDAR
 
 # for RPLIDAR A2M8:
 # LIDAR_BAUDRATE=115200
@@ -29,6 +29,9 @@ DDS_CONFIG=DEFAULT
 
 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 # RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+MECANUM=True
+# MECANUM=False
 ```
 
 **Notes:**
