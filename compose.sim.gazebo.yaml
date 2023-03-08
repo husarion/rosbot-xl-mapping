@@ -1,7 +1,7 @@
 services:
 
   rviz:
-    image: husarion/rviz2:humble
+    image: husarion/rviz2:galactic-8.5.2-20230204-stable
     runtime: nvidia
     container_name: rviz
     network_mode: host
@@ -16,7 +16,7 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=all
 
   rosbot-xl:
-    image: husarion/rosbot-xl-gazebo:humble
+    image: husarion/rosbot-xl-gazebo:humble-0.3.0-20230204
     runtime: nvidia
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
@@ -30,7 +30,7 @@ services:
     command: ros2 launch rosbot_xl_gazebo simulation.launch.py mecanum:=${MECANUM:-True}
 
   mapping:
-    image: husarion/slam-toolbox:humble
+    image: husarion/slam-toolbox:humble-2.6.4-20230204-stable
     network_mode: host
     ipc: host
     volumes:

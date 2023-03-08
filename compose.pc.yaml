@@ -1,7 +1,10 @@
-services:
+# Quick Start
+# $ xhost local:root
+# $ docker compose -f compose.pc.yaml up
 
+services:
   map-saver:
-    image: husarion/nav2-map-server:humble-22-12-07
+    image: husarion/nav2-map-server:humble-1.1.5-20230204-stable
     network_mode: host
     ipc: host
     volumes:
@@ -12,7 +15,7 @@ services:
     command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"
 
   rviz:
-    image: husarion/rviz2:humble-22-12-20
+    image: husarion/rviz2:galactic-8.5.2-20230204-stable
     container_name: rviz
     network_mode: host
     ipc: host
@@ -26,7 +29,7 @@ services:
       - LIBGL_ALWAYS_SOFTWARE=1
 
   joy2twist:
-    image: husarion/joy2twist:humble-22-12-07
+    image: husarion/joy2twist:humble-1.0.0-20230204-stable
     network_mode: host
     ipc: host
     devices:

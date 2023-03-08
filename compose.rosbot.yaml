@@ -1,7 +1,7 @@
 services:
 
   rosbot-xl:
-    image: husarion/rosbot-xl:humble
+    image: husarion/rosbot-xl:humble-0.3.0-20230204
     network_mode: host
     ipc: host
     environment:
@@ -10,7 +10,7 @@ services:
     command: ros2 launch rosbot_xl_bringup bringup.launch.py mecanum:=${MECANUM:-True}
 
   microros:
-    image: husarion/micro-ros-agent:humble-22-12-07
+    image: husarion/micro-ros-agent:humble-3.1.2-20230204-stable
     network_mode: host
     ipc: host
     environment:
@@ -19,7 +19,7 @@ services:
     command: ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 
   rplidar:
-    image: husarion/rplidar:humble-22-12-07
+    image: husarion/rplidar:humble-1.0.1-20230206-stable
     network_mode: host
     ipc: host
     devices:
@@ -30,7 +30,7 @@ services:
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
 
   mapping:
-    image: husarion/slam-toolbox:humble-22-12-07
+    image: husarion/slam-toolbox:humble-2.6.4-20230204-stable
     network_mode: host
     ipc: host
     volumes:
