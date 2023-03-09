@@ -41,3 +41,13 @@ services:
       ros2 launch slam_toolbox online_sync_launch.py
         slam_params_file:=/slam_params.yaml
         use_sim_time:=True
+  
+  map-saver:
+    image: husarion/nav2-map-server:humble-1.1.5-20230204-stable
+    network_mode: host
+    ipc: host
+    volumes:
+      - ./maps:/maps
+    environment:
+      - RMW_IMPLEMENTATION
+    command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"

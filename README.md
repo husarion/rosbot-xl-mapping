@@ -118,4 +118,5 @@ And inside the running container shell execute:
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 
+Map will be automatically saved every 5 seconds.
 
