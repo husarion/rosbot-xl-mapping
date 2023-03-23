@@ -98,7 +98,14 @@ docker compose -f compose.rosbot.yaml up
 > **Prerequisites**
 >
 > The `compose.sim.gazebo.yaml` file uses NVIDIA Container Runtime. Make sure you have NVIDIA GPU and the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) installed.
-
+> This project has been tested on the following setup:
+> ```bash
+>$ docker compose version
+>Docker Compose version 2.17.0
+>$ docker --version
+>Docker version 23.0.1, build a5ee5b1dfc
+>```
+> Additionally, the `compose.sim.gazebo.yaml` file in this project uses NVIDIA Container Runtime. So, please make sure that you have an NVIDIA GPU and the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) installed on your system before moving forward.
 Start the containers in a new terminal:
 
 ```bash

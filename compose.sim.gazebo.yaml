@@ -2,7 +2,13 @@ services:
 
   rviz:
     image: husarion/rviz2:galactic-8.5.2-20230204-stable
-    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     container_name: rviz
     network_mode: host
     ipc: host
@@ -17,7 +23,13 @@ services:
 
   rosbot-xl:
     image: husarion/rosbot-xl-gazebo:humble-0.3.0-20230204
-    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     network_mode: host
