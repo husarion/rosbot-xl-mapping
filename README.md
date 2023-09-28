@@ -1,6 +1,6 @@
 # rosbot-xl-mapping
 
-Create a map of the unknow environment with ROSbot XL controlled in the LAN network or [over the Internet](https://husarion.com/manuals/rosbot/remote-access/). 
+Create a map of the unknow environment with ROSbot XL controlled in the LAN network or [over the Internet](https://husarion.com/software/os/vpn-access/). 
 
 ## Quick Start (real robot)
 
@@ -37,7 +37,7 @@ MECANUM=True
 **Notes:**
 - Usually RPLIDAR is listed under `/dev/ttyUSB0`, but verify it with `ls -la /dev/ttyUSB*` command.
 - If you have RPLIDAR A3 or A2M12 (with violet border around the lenses) set: `LIDAR_BAUDRATE=256000`. Otherwise (for older A2 LIDARs): `LIDAR_BAUDRATE=115200`.
-- With `DDS_CONFIG=DEFAULT` your robot and laptop need to be in the same LAN network. If you want to use this demo over the Internet, set `DDS_CONFIG=HUSARNET_SIMPLE_AUTO` and [enable Husarnet on ROSbot XL and you PC](https://husarion.com/manuals/rosbot/remote-access/).
+- With `DDS_CONFIG=DEFAULT` your robot and laptop need to be in the same LAN network. If you want to use this demo over the Internet, set `DDS_CONFIG=HUSARNET_SIMPLE_AUTO` and [enable Husarnet on ROSbot XL and you PC](https://husarion.com/software/os/vpn-access/).
 
 Sync a workspace with ROSbot XL:
 
