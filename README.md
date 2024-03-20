@@ -8,36 +8,13 @@ Create a map of the unknow environment with ROSbot XL controlled in the LAN netw
 
 Clone this repository:
 
-```
+```bash
 git clone https://github.com/husarion/rosbot-xl-mapping.git
 ```
 
 **Connect a gamepad to USB port of your PC/laptop** (the steering without the gamepad will also be described as an alternative).
 
-Check your configs in `.env` file:
-
-```
-LIDAR_SERIAL=/dev/ttyRPLIDAR
-
-# for RPLIDAR A2M8:
-# LIDAR_BAUDRATE=115200
-# for RPLIDAR A2M12 and A3:
-LIDAR_BAUDRATE=256000
-
-DDS_CONFIG=DEFAULT
-# DDS_CONFIG=HUSARNET_SIMPLE_AUTO
-
-RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-# RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-
-MECANUM=True
-# MECANUM=False
-```
-
-**Notes:**
-- Usually RPLIDAR is listed under `/dev/ttyUSB0`, but verify it with `ls -la /dev/ttyUSB*` command.
-- If you have RPLIDAR A3 or A2M12 (with violet border around the lenses) set: `LIDAR_BAUDRATE=256000`. Otherwise (for older A2 LIDARs): `LIDAR_BAUDRATE=115200`.
-- With `DDS_CONFIG=DEFAULT` your robot and laptop need to be in the same LAN network. If you want to use this demo over the Internet, set `DDS_CONFIG=HUSARNET_SIMPLE_AUTO` and [enable Husarnet on ROSbot XL and you PC](https://husarion.com/software/os/vpn-access/).
+Check your robot configs in `.env` file
 
 Sync a workspace with ROSbot XL:
 
@@ -54,7 +31,7 @@ xhost +local:docker && \
 docker compose -f compose.pc.yaml up
 ```
 
-#### Without the gamepad 
+#### Without the gamepad
 
 ```bash
 xhost +local:docker && \
@@ -81,7 +58,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 >
 > Firmware flashing command (run in the ROSbot's terminal)
 >
-> ```
+> ```bash
 > docker run --rm -it --privileged \
 > husarion/rosbot-xl:humble \
 > flash-firmware.py -p /dev/ttyUSB0
@@ -119,4 +96,3 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 
 Map will be automatically saved every 5 seconds.
-
