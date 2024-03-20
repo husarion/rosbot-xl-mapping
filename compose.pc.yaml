@@ -9,22 +9,16 @@ services:
     ipc: host
     volumes:
       - ./maps:/maps
-    environment:
-      - DDS_CONFIG
-      - RMW_IMPLEMENTATION
     command: bash -c "while true; do ros2 run nav2_map_server map_saver_cli --free 0.15 --fmt png -f /maps/map; sleep 5; done"
 
   rviz:
-    image: husarion/rviz2:galactic-8.5.2-20230204-stable
-    container_name: rviz
+    image: husarion/rviz2:humble
     network_mode: host
     ipc: host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./config/rosbot.rviz:/root/.rviz2/default.rviz
     environment:
-      - DDS_CONFIG
-      - RMW_IMPLEMENTATION
       - DISPLAY=${DISPLAY:?err}
       - LIBGL_ALWAYS_SOFTWARE=1
 
@@ -34,12 +28,9 @@ services:
     ipc: host
     devices:
       - /dev/input
-    volumes: 
+    volumes:
       - ./config/joy2twist.yaml:/joy2twist.yaml
-    environment:
-      - DDS_CONFIG
-      - RMW_IMPLEMENTATION
-    command: > 
+    command: >
       ros2 launch joy2twist gamepad_controller.launch.py
         joy2twist_params_file:=/joy2twist.yaml
 
