@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repo is deprecated. Visit https://github.com/husarion/rosbot-xl-autonomy instead.
+
 # rosbot-xl-mapping
 
 Create a map of the unknow environment with ROSbot XL controlled in the LAN network or [over the Internet](https://husarion.com/software/os/vpn-access/). 
