@@ -1,32 +1,27 @@
 services:
 
-  rosbot-xl:
-    image: husarion/rosbot-xl:humble-0.3.0-20230204
+  rosbot:
+    image: husarion/rosbot-xl:humble-0.10.0-20240216
     network_mode: host
     ipc: host
-    environment:
-      - DDS_CONFIG
-      - RMW_IMPLEMENTATION
-    command: ros2 launch rosbot_xl_bringup bringup.launch.py mecanum:=${MECANUM:-True}
-
-  microros:
-    image: husarion/micro-ros-agent:humble-3.1.2-20230204-stable
-    network_mode: host
-    ipc: host
-    environment:
-      - DDS_CONFIG
-      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-    command: ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+    restart: unless-stopped
+    # devices:
+    #   - /dev/ttyUSBDB # just for firmware flashing
+    #   - /dev/bus/usb/ # just for firmware flashing
+    ports:
+      - 192.168.77.2:8888:8888/udp
+    command: >
+      ros2 launch /husarion_utils/rosbot.launch.py
+        mecanum:=${MECANUM:-True}
+        include_camera_mount:=True
+        healthcheck:=False
 
   rplidar:
     image: husarion/rplidar:humble-1.0.1-20230206-stable
     network_mode: host
     ipc: host
     devices:
-      - ${LIDAR_SERIAL:?err}:/dev/ttyUSB0
-    environment:
-      - DDS_CONFIG
-      - RMW_IMPLEMENTATION
+      - /dev/ttyRPLIDAR:/dev/ttyUSB0
     command: ros2 launch sllidar_ros2 sllidar_launch.py serial_baudrate:=${LIDAR_BAUDRATE:-115200}
 
   mapping:
@@ -35,9 +30,6 @@ services:
     ipc: host
     volumes:
       - ./config/slam_toolbox_params.yaml:/slam_params.yaml
-    environment:
-      - DDS_CONFIG
-      - RMW_IMPLEMENTATION
     command: >
       ros2 launch slam_toolbox online_sync_launch.py
         slam_params_file:=/slam_params.yaml
